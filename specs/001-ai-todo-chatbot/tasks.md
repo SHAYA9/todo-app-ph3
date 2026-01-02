@@ -23,7 +23,7 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create backend/frontend project structure based on `plan.md`.
+- [X] T001 Create backend/frontend project structure based on `plan.md`.
 - [ ] T002 [P] Initialize Python backend project with OpenAI Agents SDK and MCP SDK dependencies.
 - [ ] T003 [P] Initialize Javascript frontend project with OpenAI ChatKit dependency.
 - [ ] T004 [P] Configure linting and formatting tools for both backend and frontend projects.

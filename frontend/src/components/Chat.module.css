@@ -1,0 +1,209 @@
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  height: 85vh;
+  max-height: 800px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+}
+
+.messagesArea {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background: var(--background);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.messageWrapper {
+  display: flex;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.messageWrapper.user {
+  justify-content: flex-end;
+}
+
+.messageWrapper.agent {
+  justify-content: flex-start;
+}
+
+.messageBubble {
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 16px;
+  word-wrap: break-word;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.messageBubble.user {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+.messageBubble.agent {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  border-bottom-left-radius: 4px;
+}
+
+.taskList {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0;
+}
+
+.taskItem {
+  padding: 10px;
+  margin: 6px 0;
+  background: var(--surface-hover);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.taskItem:hover {
+  background: var(--border-color);
+  transform: translateX(4px);
+}
+
+.taskItem.completed {
+  border-left-color: var(--secondary-color);
+  opacity: 0.8;
+}
+
+.taskIcon {
+  font-size: 1.2em;
+  flex-shrink: 0;
+}
+
+.noTasks {
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.loadingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+}
+
+.typingDots {
+  display: flex;
+  gap: 4px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: var(--text-muted);
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.inputArea {
+  display: flex;
+  padding: 20px;
+  gap: 12px;
+  background: var(--surface);
+  border-top: 1px solid var(--border-color);
+}
+
+.input {
+  flex-grow: 1;
+  padding: 14px 20px;
+  background: var(--background);
+  border: 2px solid var(--border-color);
+  border-radius: 24px;
+  color: var(--text-primary);
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input::placeholder {
+  color: var(--text-muted);
+}
+
+.input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sendButton {
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
+  color: white;
+  border: none;
+  border-radius: 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.sendButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-hover) 0%, var(--primary-color) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+}
+
+.sendButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sendButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}

@@ -1,0 +1,35 @@
+# Gitignore for AI Todo Chatbot Project
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+*.egg-info/
+
+# Node.js
+node_modules
+dist/
+build/
+*.log
+.env*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+report.[0-9]*.resourceusage
+*.tgz
+.yarn/
+.pnp.*
+
+# Universal
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Gemini CLI specific
+.gemini/

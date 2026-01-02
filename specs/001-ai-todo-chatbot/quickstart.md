@@ -7,8 +7,8 @@ This guide provides a brief overview of how to get started with the AI Todo Chat
 The backend is a Python application that hosts the AI agent.
 
 1.  **Install dependencies**: `pip install -r requirements.txt`
-2.  **Configure environment**: Set the required API keys for the OpenAI service in a `.env` file.
-3.  **Run the application**: `python backend/src/agent/main.py`
+2.  **Configure environment**: Create a `.env` file in the `backend/` directory based on `backend/.env.example`, setting `OPENAI_API_KEY` and `MCP_API_BASE_URL`.
+3.  **Run the application**: `uvicorn src.main:app --host 0.0.0.0 --port 5000 --reload`
 
 ## Frontend
 
@@ -26,3 +26,4 @@ Once the application is running, you can interact with the chatbot using natural
 -   "Show me my tasks"
 -   "I finished the groceries task"
 -   "Delete the groceries task"
+-   "Update task 3 to review code"
