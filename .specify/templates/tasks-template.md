@@ -62,12 +62,11 @@ description: "Task list template for feature implementation"
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Setup MCP SDK and API client scaffolding for the FastAPI backend.
+- [ ] T005 [P] Implement the basic agent scaffolding using the OpenAI Agents SDK.
+- [ ] T006 [P] Setup API routing and middleware structure for the agent's interaction.
+- [ ] T007 Configure error handling and logging infrastructure for the agent.
+- [ ] T008 Setup environment configuration management for API keys and endpoints.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -88,12 +87,12 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
+- [ ] T012 [P] [US1] Define tool specifications for the OpenAI Agent based on the API in `src/agents/tools/[tool_name].py`.
+- [ ] T013 [US1] Implement the MCP SDK client for the Todo API endpoints in `src/services/api_client.py`.
+- [ ] T014 [US1] Implement the agent logic to process intent and call the correct tool in `src/agents/todo_agent.py`.
+- [ ] T015 [US1] Integrate the agent with the UI (OpenAI ChatKit) components in `src/ui/chat_component.js`.
+- [ ] T016 [US1] Add validation and error handling for API responses.
+- [ ] T017 [US1] Add logging for agent actions and API calls.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 

@@ -31,7 +31,13 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **Spec-Driven Development**: Is all new behavior described in a specification?
+- [ ] **API-Only Integration**: Does the plan rely exclusively on the existing FastAPI backend for all data and business logic?
+- [ ] **Agent-Based Reasoning**: Is the OpenAI Agents SDK used for all natural language understanding and tool selection?
+- [ ] **MCP Tool Execution**: Are all task actions implemented using the official MCP SDK tools?
+- [ ] **Safety & Confirmation**: Does the plan include mechanisms for confirming destructive actions and clarifying ambiguity?
+- [ ] **Stateless Operation**: Does the design avoid storing any long-term state in the chatbot itself?
+- [ ] **Technical Constraints**: Does the plan adhere to the mandated technical stack (OpenAI ChatKit, OpenAI Agents SDK, MCP SDK, FastAPI)?
 
 ## Project Structure
 

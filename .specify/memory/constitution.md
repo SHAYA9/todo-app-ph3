@@ -1,55 +1,60 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: none -> 1.0.0
+- List of modified principles: Initial creation
+- Added sections: Core Principles, Technical Constraints, Development Workflow, Governance
+- Removed sections: none
+- Templates requiring updates:
+  - ✅ .specify/templates/plan-template.md
+  - ✅ .specify/templates/spec-template.md
+  - ✅ .specify/templates/tasks-template.md
+- Follow-up TODOs: none
+-->
+# Phase III Todo AI Chatbot Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Spec-Driven Development (NON-NEGOTIABLE)
+All behavior must be defined in specs before implementation.
+No manual code edits are allowed.
+Claude Code is the only implementation source.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. API-Only Integration
+The AI chatbot must interact with the Todo system only via existing FastAPI APIs.
+No database or model access is allowed.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Agent-Based Reasoning
+Natural language understanding must be handled via OpenAI Agents SDK.
+Agents must detect intent, extract parameters, and select tools.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. MCP Tool Execution
+All task actions must be executed using Official MCP SDK tools.
+Each tool maps one-to-one with a backend API endpoint.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Safety & Confirmation
+The chatbot must confirm destructive actions.
+Ambiguous commands must trigger clarification questions.
+No hallucinated task states are allowed.
 
-### [PRINCIPLE_6_NAME]
+### VI. Stateless Operation
+The chatbot holds no long-term memory.
+All task state must be fetched from backend APIs.
 
+## Technical Constraints
+- UI: OpenAI ChatKit
+- Reasoning: OpenAI Agents SDK
+- Tools: Official MCP SDK
+- Backend: Existing FastAPI Todo API
+- No auth, no schedulers, no DB changes
 
-[PRINCIPLE__DESCRIPTION]
-
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
-
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+## Development Workflow
+Specs -> Plan -> Tasks -> Implement
+Iteration happens by refining specs only.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution overrides all other instructions.
+Violations require spec correction, not code edits.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0
+**Ratified**: 2025-12-30
+**Last Amended**: 2026-01-02
