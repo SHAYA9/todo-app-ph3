@@ -1,0 +1,96 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "add_task",
+      "description": "Adds a new task to the user's todo list.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "The description of the task."
+          }
+        },
+        "required": ["description"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "view_tasks",
+      "description": "Views all tasks in the user's todo list, with an optional status filter.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "The status to filter tasks by.",
+            "enum": ["pending", "completed"]
+          }
+        }
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "update_task",
+      "description": "Updates the description of an existing task.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "The ID of the task to update."
+          },
+          "new_description": {
+            "type": "string",
+            "description": "The new description for the task."
+          }
+        },
+        "required": ["task_id", "new_description"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "mark_task_status",
+      "description": "Marks a task as complete or pending.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "The ID of the task to update."
+          },
+          "status": {
+            "type": "string",
+            "description": "The new status for the task.",
+            "enum": ["pending", "completed"]
+          }
+        },
+        "required": ["task_id", "status"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "delete_task",
+      "description": "Deletes a task from the user's todo list.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "The ID of the task to delete."
+          }
+        },
+        "required": ["task_id"]
+      }
+    }
+  }
+]
