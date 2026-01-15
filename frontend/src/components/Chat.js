@@ -38,7 +38,7 @@ function Chat() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
-  const [conversationHistory, setConversationHistory] = useState(null);
+  const [conversationId, setConversationId] = useState(null);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
@@ -58,9 +58,9 @@ function Chat() {
       setLoading(true);
 
       try {
-        const result = await sendMessageToAgent(currentInput, conversationHistory);
+        const result = await sendMessageToAgent(currentInput, conversationId);
         setMessages((prevMessages) => [...prevMessages, { type: 'agent', text: result.response }]);
-        setConversationHistory(result.conversationHistory);
+        setConversationId(result.conversationId);
       } catch (error) {
         setMessages((prevMessages) => [
           ...prevMessages,

@@ -1,147 +1,252 @@
-# AI Todo Chatbot
+# Phase III: AI Todo Chatbot
 
-This project implements an AI-powered chatbot that allows users to manage their Todo list using natural language. It consists of a Python backend that hosts the AI agent and a React frontend for the chat interface.
+An AI-powered chatbot that manages todos through natural language using **OpenAI Agents SDK** and **MCP (Model Context Protocol)** architecture.
 
-## Features
+## 🏗️ Architecture
 
-- Add new tasks
-- View all tasks (pending or completed)
-- Mark tasks as complete or incomplete
-- Delete tasks
-- Update task descriptions
+This project implements a **stateless, database-backed** architecture following Phase III specifications:
 
-## Project Structure
+- **Frontend**: React with OpenAI ChatKit
+- **Backend**: Python FastAPI
+- **AI Framework**: OpenAI Agents SDK
+- **MCP Server**: Official MCP SDK
+- **Database**: SQLModel + Neon PostgreSQL (or SQLite locally)
+- **Authentication**: Better Auth (optional)
 
-- `backend/`: Python FastAPI application for the AI agent and integration with the MCP service.
-- `frontend/`: React application for the user interface.
-- `specs/`: Project specifications, plans, data models, contracts, and research documents.
+### Architecture Diagram
 
-## Setup Instructions
+```
+┌─────────────────┐     ┌──────────────────────────────────────────────┐     ┌─────────────────┐
+│                 │     │              FastAPI Server                   │     │                 │
+│                 │     │  ┌────────────────────────────────────────┐  │     │                 │
+│  ChatKit UI     │────▶│  │         Chat Endpoint                  │  │     │    Neon DB      │
+│  (Frontend)     │     │  │  POST /api/{user_id}/chat              │  │     │  (PostgreSQL)   │
+│                 │     │  └───────────────┬────────────────────────┘  │     │                 │
+│                 │     │                  │                           │     │  - tasks        │
+│                 │     │                  ▼                           │     │  - conversations│
+│                 │     │  ┌────────────────────────────────────────┐  │     │  - messages     │
+│                 │◀────│  │      OpenAI Agents SDK                 │  │     │                 │
+│                 │     │  │      (Agent + Runner)                  │  │     │                 │
+│                 │     │  └───────────────┬────────────────────────┘  │     │                 │
+│                 │     │                  │                           │     │                 │
+│                 │     │                  ▼                           │     │                 │
+│                 │     │  ┌────────────────────────────────────────┐  │     │                 │
+│                 │     │  │         MCP Server                     │  │────▶│                 │
+│                 │     │  │  (MCP Tools for Task Operations)       │  │◀────│                 │
+│                 │     │  └────────────────────────────────────────┘  │     │                 │
+└─────────────────┘     └──────────────────────────────────────────────┘     └─────────────────┘
+```
 
-Follow these steps to set up and run the AI Todo Chatbot locally.
+## 📊 Database Models
+
+### Task
+- `id`: Primary key
+- `user_id`: User identifier (indexed)
+- `title`: Task title
+- `description`: Optional description
+- `completed`: Boolean status
+- `created_at`, `updated_at`: Timestamps
+
+### Conversation
+- `id`: Primary key
+- `user_id`: User identifier (indexed)
+- `created_at`, `updated_at`: Timestamps
+
+### Message
+- `id`: Primary key
+- `user_id`: User identifier (indexed)
+- `conversation_id`: Foreign key to Conversation
+- `role`: "user" | "assistant" | "system"
+- `content`: Message text
+- `created_at`: Timestamp
+
+## 🔧 MCP Tools
+
+The MCP server exposes 5 tools for task management:
+
+1. **add_task** - Create new task
+2. **list_tasks** - Retrieve tasks (all/pending/completed)
+3. **complete_task** - Mark task as complete
+4. **delete_task** - Remove task
+5. **update_task** - Modify task title/description
+
+## 🚀 Setup Instructions
 
 ### Prerequisites
 
-- Python 3.9+
-- Node.js (LTS version) and npm
-- An OpenAI API Key
+- Python 3.10+
+- Node.js 16+
+- OpenAI API Key
+- Neon PostgreSQL account (or use SQLite locally)
 
-### 1. Backend Setup
+### Backend Setup
 
-Navigate to the `backend/` directory and set up the Python environment.
+1. **Navigate to backend directory**
+   ```bash
+   cd backend
+   ```
 
+2. **Create virtual environment**
+   ```bash
+   python -m venv venv
+   .\venv\Scripts\activate  # Windows
+   # source venv/bin/activate  # macOS/Linux
+   ```
+
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configure environment**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edit `.env` and add:
+   - `OPENAI_API_KEY`: Your OpenAI API key
+   - `DATABASE_URL`: Your Neon PostgreSQL URL (optional, uses SQLite if not set)
+
+5. **Initialize database**
+   ```bash
+   python migrations/init_db.py
+   ```
+
+6. **Run backend server**
+   ```bash
+   uvicorn src.main:app --host 0.0.0.0 --port 5000 --reload
+   ```
+
+### Frontend Setup
+
+1. **Navigate to frontend directory**
+   ```bash
+   cd frontend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Configure environment**
+   ```bash
+   cp .env.local.example .env.local
+   ```
+   
+   Edit `.env.local`:
+   - `REACT_APP_BACKEND_API_URL`: Backend URL (default: http://localhost:5000)
+   - `REACT_APP_USER_ID`: User ID for testing (default: demo_user)
+
+4. **Run frontend**
+   ```bash
+   npm start
+   ```
+
+## 📝 API Endpoints
+
+### POST /api/{user_id}/chat
+
+Send a message and get AI response.
+
+**Request**
+```json
+{
+  "conversation_id": 1,  // Optional, creates new if not provided
+  "message": "Add buy groceries"
+}
+```
+
+**Response**
+```json
+{
+  "conversation_id": 1,
+  "response": "I've added 'buy groceries' to your tasks!",
+  "tool_calls": [
+    {
+      "name": "add_task",
+      "arguments": "{\"user_id\": \"demo_user\", \"title\": \"buy groceries\"}"
+    }
+  ]
+}
+```
+
+## 💬 Natural Language Commands
+
+- **Add**: "Add buy groceries", "Remember to call mom"
+- **List**: "Show my tasks", "What's pending?"
+- **Complete**: "Mark task 1 as done", "Complete the groceries task"
+- **Delete**: "Delete task 2", "Remove the meeting"
+- **Update**: "Change task 1 to buy milk", "Update groceries task"
+
+## 🎯 Key Features
+
+✅ **Stateless Architecture** - No server-side session storage  
+✅ **Database Persistence** - All state in PostgreSQL/SQLite  
+✅ **MCP Tools** - Standardized AI-to-app communication  
+✅ **Conversation History** - Maintains context across sessions  
+✅ **Multi-user Support** - User ID-based isolation  
+✅ **Scalable** - Horizontal scaling ready  
+
+## 🧪 Testing
+
+Run backend tests:
 ```bash
 cd backend
-python -m venv venv
-./venv/Scripts/activate # On Windows
-# source venv/bin/activate # On macOS/Linux
-pip install -r requirements.txt
+pytest tests/
 ```
 
-#### Configuration
+## 📦 Deployment
 
-Create a `.env` file in the `backend/` directory based on `backend/.env.example`.
+### Backend (Vercel/Railway/Render)
+1. Set environment variables (OPENAI_API_KEY, DATABASE_URL)
+2. Deploy FastAPI app
+3. Run database migrations
 
-```ini
-# backend/.env
-OPENAI_API_KEY=your_openai_api_key_here
-MCP_API_BASE_URL=http://localhost:8000 # Replace with your actual MCP API base URL if different
+### Frontend (Vercel/Netlify)
+1. Set REACT_APP_BACKEND_API_URL
+2. For OpenAI ChatKit: Configure domain allowlist at https://platform.openai.com/settings/organization/security/domain-allowlist
+3. Deploy React app
+
+## 🔐 Environment Variables
+
+### Backend (.env)
+```env
+OPENAI_API_KEY=sk-...
+DATABASE_URL=postgresql://...
 ```
 
-Replace `your_openai_api_key_here` with your actual OpenAI API key. Ensure `MCP_API_BASE_URL` points to your running FastAPI service (which is external to this project and assumed to be running).
-
-#### Run Backend
-
-Start the FastAPI application.
-
-```bash
-cd backend
-./venv/Scripts/activate # On Windows
-# source venv/bin/activate # On macOS/Linux
-uvicorn src.main:app --host 0.0.0.0 --port 5000 --reload
-```
-The backend server will run on `http://localhost:5000`.
-
-### 2. Frontend Setup
-
-Navigate to the `frontend/` directory and install JavaScript dependencies.
-
-```bash
-cd frontend
-npm install
+### Frontend (.env.local)
+```env
+REACT_APP_BACKEND_API_URL=http://localhost:5000
+REACT_APP_USER_ID=demo_user
+REACT_APP_OPENAI_DOMAIN_KEY=...  # For production ChatKit
 ```
 
-#### Configuration
+## 📚 Tech Stack
 
-Create a `.env.local` file in the `frontend/` directory based on `frontend/.env.local.example`.
+| Component | Technology |
+|-----------|-----------|
+| Frontend | React + OpenAI ChatKit |
+| Backend | Python FastAPI |
+| AI Framework | OpenAI Agents SDK |
+| MCP Server | Official MCP SDK |
+| ORM | SQLModel |
+| Database | Neon PostgreSQL / SQLite |
+| Authentication | Better Auth (optional) |
 
-```ini
-# frontend/.env.local
-REACT_APP_BACKEND_API_URL=http://localhost:5000 # This should match your backend server address
-```
+## 🎓 Development Approach
 
-#### Run Frontend
+Built using **Agentic Dev Stack workflow**:
+1. ✅ Write spec
+2. ✅ Generate plan
+3. ✅ Break into tasks
+4. ✅ Implement via Claude Code
 
-Start the React development server.
+## 📄 License
 
-```bash
-cd frontend
-npm start
-```
-The frontend application will open in your browser, typically at `http://localhost:3000`.
+MIT
 
-## Usage
+## 🤝 Contributing
 
-Once both the backend and frontend servers are running, open your web browser to `http://localhost:3000`.
-You can interact with the AI Todo Chatbot using natural language in the chat interface.
-
-**Example Commands:**
-
--   "Add a task to buy groceries"
--   "Show me my tasks"
--   "Show me my pending tasks"
--   "Mark task 1 as completed"
--   "Delete task 2"
--   "Update task 3 to review code"
-
-Remember that for destructive actions like "delete task", the chatbot will ask for confirmation before proceeding.
-
-## Running Tests
-
-To run backend integration tests:
-
-```bash
-cd backend
-./venv/Scripts/activate # On Windows
-# source venv/bin/activate # On macOS/Linux
-pytest tests/integration
-```
-
-## Linting and Formatting
-
-### Backend (Python)
-
-```bash
-# Linting
-cd backend
-./venv/Scripts/activate # On Windows
-# source venv/bin/activate # On macOS/Linux
-flake8 src/
-
-# Formatting (check only)
-black --check src/
-# Formatting (apply changes)
-black src/
-```
-
-### Frontend (JavaScript/React)
-
-ESLint is configured via `react-scripts`. Prettier is used for formatting.
-
-```bash
-# Formatting (check only)
-cd frontend
-npx prettier --check src/
-# Formatting (apply changes)
-npx prettier --write src/
-```
+Pull requests are welcome! Please follow the existing code structure and add tests for new features.
