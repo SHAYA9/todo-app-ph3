@@ -1,3 +1,21 @@
+[project]
+name = "todo-app-ph3"
+version = "0.1.0"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "python-dotenv",
+    "openai>=1.0.0",
+    "sqlmodel",
+    "psycopg2-binary",
+    "alembic",
+    "pytest",
+    "pytest-asyncio",
+    "httpx",
+    "flake8",
+    "black",
+]
+
 [tool.black]
 line-length = 120
 include = '\.pyi?$'
