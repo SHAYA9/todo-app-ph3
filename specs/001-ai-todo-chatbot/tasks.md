@@ -24,9 +24,9 @@
 **Purpose**: Project initialization and basic structure
 
 - [X] T001 Create backend/frontend project structure based on `plan.md`.
-- [ ] T002 [P] Initialize Python backend project with OpenAI Agents SDK and MCP SDK dependencies.
-- [ ] T003 [P] Initialize Javascript frontend project with OpenAI ChatKit dependency.
-- [ ] T004 [P] Configure linting and formatting tools for both backend and frontend projects.
+- [X] T002 [P] Initialize Python backend project with OpenAI Agents SDK and MCP SDK dependencies.
+- [X] T003 [P] Initialize Javascript frontend project with OpenAI ChatKit dependency.
+- [X] T004 [P] Configure linting and formatting tools for both backend and frontend projects.
 
 ---
 
@@ -36,12 +36,12 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 [Backend] Implement the MCP SDK client in `backend/src/services/mcp_client.py` to connect to the existing FastAPI service.
-- [ ] T006 [Backend] Set up the basic agent orchestrator in `backend/src/agent/main.py` using the OpenAI Agents SDK.
-- [ ] T007 [Backend] Implement a generic tool-calling and dispatch mechanism in the agent.
-- [ ] T008 [Frontend] Create the main chat UI component in `frontend/src/components/Chat.js`.
-- [ ] T009 [Frontend] Set up the main page at `frontend/src/pages/Index.js` to host the chat component.
-- [ ] T010 [Frontend] Implement API service to connect the frontend UI to the backend agent endpoint.
+- [X] T005 [Backend] Implement the MCP SDK client in `backend/src/services/mcp_client.py` to connect to the existing FastAPI service.
+- [X] T006 [Backend] Set up the basic agent orchestrator in `backend/src/agent/main.py` using the OpenAI Agents SDK.
+- [X] T007 [Backend] Implement a generic tool-calling and dispatch mechanism in the agent.
+- [X] T008 [Frontend] Create the main chat UI component in `frontend/src/components/Chat.js`.
+- [X] T009 [Frontend] Set up the main page at `frontend/src/pages/Index.js` to host the chat component.
+- [X] T010 [Frontend] Implement API service to connect the frontend UI to the backend agent endpoint.
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel.
 
@@ -55,9 +55,9 @@
 
 ### Implementation for User Story 1
 
-- [ ] T011 [Backend] [US1] Implement the `add_task` tool in `backend/src/agent/tools/add_task.py`, which uses the `mcp_client` to call the backend.
-- [ ] T012 [Backend] [US1] Register and integrate the `add_task` tool with the agent orchestrator in `backend/src/agent/main.py`.
-- [ ] T013 [Test] [US1] Write an integration test to verify the add task flow from chat input to backend confirmation.
+- [X] T011 [Backend] [US1] Implement the `add_task` tool in `backend/src/agent/tools/add_task.py`, which uses the `mcp_client` to call the backend.
+- [X] T012 [Backend] [US1] Register and integrate the `add_task` tool with the agent orchestrator in `backend/src/agent/main.py`.
+- [X] T013 [Test] [US1] Write an integration test to verify the add task flow from chat input to backend confirmation.
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently.
 
@@ -71,10 +71,10 @@
 
 ### Implementation for User Story 2
 
-- [ ] T014 [Backend] [US2] Implement the `view_tasks` tool in `backend/src/agent/tools/view_tasks.py`.
-- [ ] T015 [Backend] [US2] Integrate the `view_tasks` tool with the agent.
-- [ ] T016 [Frontend] [US2] Implement UI logic in `frontend/src/components/Chat.js` to render the list of tasks returned by the agent.
-- [ ] T017 [Test] [US2] Write an integration test for the "view tasks" flow.
+- [X] T014 [Backend] [US2] Implement the `view_tasks` tool in `backend/src/agent/tools/view_tasks.py`.
+- [X] T015 [Backend] [US2] Integrate the `view_tasks` tool with the agent.
+- [X] T016 [Frontend] [US2] Implement UI logic in `frontend/src/components/Chat.js` to render the list of tasks returned by the agent.
+- [X] T017 [Test] [US2] Write an integration test for the "view tasks" flow.
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently.
 
@@ -88,9 +88,9 @@
 
 ### Implementation for User Story 3
 
-- [ ] T018 [Backend] [US3] Implement the `mark_task_status` tool in `backend/src/agent/tools/mark_task_status.py`.
-- [ ] T019 [Backend] [US3] Integrate the `mark_task_status` tool with the agent.
-- [ ] T020 [Test] [US3] Write an integration test for the "mark task status" flow.
+- [X] T018 [Backend] [US3] Implement the `mark_task_status` tool in `backend/src/agent/tools/mark_task_status.py`.
+- [X] T019 [Backend] [US3] Integrate the `mark_task_status` tool with the agent.
+- [X] T020 [Test] [US3] Write an integration test for the "mark task status" flow.
 
 ---
 
@@ -102,9 +102,9 @@
 
 ### Implementation for User Story 4
 
-- [ ] T021 [Backend] [US4] Implement the `delete_task` tool in `backend/src/agent/tools/delete_task.py`.
-- [ ] T022 [Backend] [US4] Implement the confirmation logic within the agent for destructive actions as specified in the spec.
-- [ ] T023 [Test] [US4] Write an integration test for the "delete task" flow, including the confirmation step.
+- [X] T021 [Backend] [US4] Implement the `delete_task` tool in `backend/src/agent/tools/delete_task.py`.
+- [X] T022 [Backend] [US4] Implement the confirmation logic within the agent for destructive actions as specified in the spec.
+- [X] T023 [Test] [US4] Write an integration test for the "delete task" flow, including the confirmation step.
 
 ---
 
@@ -116,9 +116,9 @@
 
 ### Implementation for User Story 5
 
-- [ ] T024 [Backend] [US5] Implement the `update_task` tool in `backend/src/agent/tools/update_task.py`.
-- [ ] T025 [Backend] [US5] Integrate the `update_task` tool with the agent.
-- [ ] T026 [Test] [US5] Write an integration test for the "update task" flow.
+- [X] T024 [Backend] [US5] Implement the `update_task` tool in `backend/src/agent/tools/update_task.py`.
+- [X] T025 [Backend] [US5] Integrate the `update_task` tool with the agent.
+- [X] T026 [Test] [US5] Write an integration test for the "update task" flow.
 
 ---
 
@@ -126,9 +126,9 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T027 [P] Documentation: Update `README.md` with final setup and usage instructions.
-- [ ] T028 Code cleanup and final review across all new files.
-- [ ] T029 Validate all steps in `quickstart.md` are accurate.
+- [X] T027 [P] Documentation: Update `README.md` with final setup and usage instructions.
+- [X] T028 Code cleanup and final review across all new files.
+- [X] T029 Validate all steps in `quickstart.md` are accurate.
 
 ---
 
