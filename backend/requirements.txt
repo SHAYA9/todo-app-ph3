@@ -2,3 +2,5 @@ pydantic[email]
 email-validator
 fastapi
 openai
+python-dotenv
+sqlmodel
