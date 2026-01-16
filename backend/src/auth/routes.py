@@ -86,7 +86,7 @@ async def signup(request: SignupRequest, response: Response):
             value=session_token,
             httponly=True,
             max_age=30 * 24 * 60 * 60,  # 30 days
-            samesite="lax",
+            samesite="None",
             secure=True  # Set to True in production with HTTPS
         )
         
@@ -136,7 +136,7 @@ async def signin(request: SigninRequest, response: Response):
             value=session_token,
             httponly=True,
             max_age=30 * 24 * 60 * 60,  # 30 days
-            samesite="lax",
+            samesite="None",
             secure=True  # Set to True in production with HTTPS
         )
         
