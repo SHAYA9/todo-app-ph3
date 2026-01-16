@@ -58,13 +58,15 @@ function Chat() {
       setLoading(true);
 
       try {
+        // Send message with authentication (cookie will be included automatically)
         const result = await sendMessageToAgent(currentInput, conversationId);
         setMessages((prevMessages) => [...prevMessages, { type: 'agent', text: result.response }]);
         setConversationId(result.conversationId);
       } catch (error) {
+        const errorMessage = error.message || 'Could not connect to the agent. Please check if the backend is running.';
         setMessages((prevMessages) => [
           ...prevMessages,
-          { type: 'agent', text: 'Error: Could not connect to the agent. Please check if the backend is running.' },
+          { type: 'agent', text: `Error: ${errorMessage}` },
         ]);
       } finally {
         setLoading(false);

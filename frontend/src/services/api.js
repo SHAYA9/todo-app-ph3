@@ -1,13 +1,20 @@
 const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://localhost:5000';
-const USER_ID = process.env.REACT_APP_USER_ID || 'demo_user';
 
-export const sendMessageToAgent = async (message, conversationId = null) => {
+export const sendMessageToAgent = async (message, conversationId = null, token = null) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/${USER_ID}/chat`, {
+    const headers = {
+      'Content-Type': 'application/json',
+    };
+    
+    // Add authorization header if token is provided
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+
+    const response = await fetch(`${API_BASE_URL}/api/chat`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
+      credentials: 'include', // Include cookies for session
       body: JSON.stringify({ 
         message,
         conversation_id: conversationId

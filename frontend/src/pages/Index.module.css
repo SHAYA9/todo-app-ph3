@@ -10,6 +10,74 @@
 .header {
   text-align: center;
   margin-top: 20px;
+  width: 100%;
+}
+
+.headerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+  position: relative;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+  position: absolute;
+  right: 0;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.signOutButton {
+  background: linear-gradient(135deg, #6366f1 0%, #818cf8 100%);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.signOutButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.loadingContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
 .title {
@@ -41,6 +109,7 @@
 }
 
 .subtitle {
+  text-align: center;
   color: var(--text-secondary);
   font-size: 1.1rem;
   font-weight: 400;
@@ -58,9 +127,46 @@
   line-height: 1.6;
 }
 
+@media (max-width: 1024px) {
+  .container {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .emoji {
+    font-size: 2.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .userName {
+    font-size: 13px;
+  }
+
+  .signOutButton {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .header {
+    margin-top: 10px;
+  }
+
   .title {
     font-size: 2rem;
+    gap: 12px;
   }
   
   .emoji {
@@ -68,6 +174,63 @@
   }
   
   .subtitle {
-    font-size: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .headerContent {
+    flex-direction: column;
+    gap: 16px;
+    padding-bottom: 0;
+  }
+
+  .userInfo {
+    width: 100%;
+    justify-content: center;
+    position: static;
+  }
+
+  .footer {
+    padding: 15px 10px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 8px;
+    gap: 12px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+    gap: 8px;
+    flex-direction: column;
+  }
+  
+  .emoji {
+    font-size: 1.8rem;
+  }
+  
+  .subtitle {
+    font-size: 0.85rem;
+    padding: 0 10px;
+  }
+
+  .userName {
+    font-size: 12px;
+  }
+
+  .signOutButton {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .footer {
+    font-size: 0.75rem;
+    padding: 10px 8px;
+  }
+
+  .loadingContainer p {
+    font-size: 0.9rem;
   }
 }
