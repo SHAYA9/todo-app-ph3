@@ -1,3 +1,4 @@
 pydantic[email]
 email-validator
 fastapi
+openai
