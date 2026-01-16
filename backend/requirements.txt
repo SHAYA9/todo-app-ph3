@@ -8,3 +8,5 @@ sqlalchemy[psycopg2]
 sqlalchemy
 psycopg2-binary
 uvicorn[standard]
+alembic
+psycopg2-binary
