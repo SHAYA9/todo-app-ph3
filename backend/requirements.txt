@@ -5,3 +5,6 @@ openai
 python-dotenv
 sqlmodel
 sqlalchemy[psycopg2]
+sqlalchemy
+psycopg2-binary
+uvicorn[standard]
