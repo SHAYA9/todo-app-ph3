@@ -87,7 +87,7 @@ async def signup(request: SignupRequest, response: Response):
             httponly=True,
             max_age=30 * 24 * 60 * 60,  # 30 days
             samesite="lax",
-            secure=False  # Set to True in production with HTTPS
+            secure=True  # Set to True in production with HTTPS
         )
         
         return AuthResponse(
@@ -137,7 +137,7 @@ async def signin(request: SigninRequest, response: Response):
             httponly=True,
             max_age=30 * 24 * 60 * 60,  # 30 days
             samesite="lax",
-            secure=False  # Set to True in production with HTTPS
+            secure=True  # Set to True in production with HTTPS
         )
         
         return AuthResponse(
