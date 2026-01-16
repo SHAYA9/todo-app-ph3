@@ -1,13 +1,17 @@
 fastapi
 uvicorn[standard]
 
+pydantic[email]
+email-validator
+python-dotenv
+
 sqlalchemy
+sqlalchemy[psycopg2]
 sqlmodel
 psycopg2-binary
 alembic
 
 passlib[bcrypt]
-pydantic[email]
-email-validator
-python-dotenv
+python-jose[cryptography]
+
 openai
