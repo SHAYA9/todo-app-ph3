@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://localhost:5000';
+// Use relative URL to leverage nginx proxy configuration in Kubernetes
+const API_BASE_URL = '';
 
 // Custom auth client that works with FastAPI backend
 const createCustomAuthClient = () => {

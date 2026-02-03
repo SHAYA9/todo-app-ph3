@@ -1,9 +1,10 @@
 # Feature Specification: [FEATURE NAME]
 
-**Feature Branch**: `[###-feature-name]`  
-**Created**: [DATE]  
-**Status**: Draft  
+**Feature Branch**: `[###-feature-name]`
+**Created**: [DATE]
+**Status**: Draft
 **Input**: User description: "$ARGUMENTS"
+**Constitution Alignment**: This spec drives all infrastructure artifacts per Spec-Driven Infrastructure principle. Application code immutability maintained.
 
 ## User Scenarios & Testing *(mandatory)*
 

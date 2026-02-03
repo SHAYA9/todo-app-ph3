@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "todo-chatbot.fullname" . }}-frontend-service
+  labels:
+    {{- include "todo-chatbot.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.frontend.service.type }}
+  ports:
+    - port: {{ .Values.frontend.service.port }}
+      targetPort: {{ .Values.frontend.service.port }}
+      protocol: TCP
+      name: http
+      {{- if eq .Values.frontend.service.type "NodePort" }}
+      # nodePort: 30080  # Uncomment and specify a specific port if needed
+      {{- end }}
+  selector:
+    {{- include "todo-chatbot.selectorLabels" . | nindent 4 }}
+    app: frontend

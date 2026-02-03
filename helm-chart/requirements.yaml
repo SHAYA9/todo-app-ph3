@@ -1,0 +1,3 @@
+# The requirements.yaml file is no longer used in Helm 3.
+# Dependencies are managed in the Chart.yaml file.
+# This file is kept for historical reference or if downgrading to Helm 2.

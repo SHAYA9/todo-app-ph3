@@ -1,4 +1,5 @@
-const API_BASE_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://localhost:5000';
+// Use relative URL to leverage nginx proxy configuration in Kubernetes
+const API_BASE_URL = '';
 
 export const sendMessageToAgent = async (message, conversationId = null, token = null) => {
   try {
